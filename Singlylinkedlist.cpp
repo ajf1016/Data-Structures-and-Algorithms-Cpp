@@ -33,7 +33,7 @@ public:
             tail->next = newNode;
         }
         tail = newNode;
-        cout<<data<<" added\n";
+        cout << data << " added\n";
     }
 
     void display()
@@ -58,7 +58,7 @@ public:
         {
             head = temp->next;
             delete temp;
-            cout<<data<<" deleted\n";
+            cout << data << " deleted\n";
             return;
         }
 
@@ -73,16 +73,43 @@ public:
             return;
         }
 
-        if(temp == tail){
+        if (temp == tail)
+        {
             tail = prev;
             tail->next = nullptr;
-            cout<<data<<" deleted\n";
+            cout << data << " deleted\n";
             return;
         }
 
         prev->next = temp->next;
         delete temp;
-        cout<<data<<" deleted\n";
+        cout << data << " deleted\n";
+    }
+
+    void insertNode(int nextTo, int data)
+    {
+        Node *newNode = new Node(data);
+        Node *temp = head;
+
+        while (temp != nullptr && temp->data != nextTo)
+        {
+            temp = temp->next;
+        }
+
+        if (temp == nullptr)
+        {
+            return;
+        }
+
+        if (temp == tail)
+        {
+            tail->next = newNode;
+            tail = newNode;
+            return;
+        }
+
+        newNode->next = temp->next;
+        temp->next = newNode;
     }
 };
 
@@ -95,11 +122,7 @@ int main()
     list.addNode(2);
     list.addNode(3);
     list.addNode(4);
-    list.addNode(5);
-    list.addNode(6);
-    list.addNode(7);
-    list.display();
-    list.deleteNode(1);
+    list.insertNode(4, 10);
     list.display();
     return 0;
 }
