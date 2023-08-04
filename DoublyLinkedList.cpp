@@ -33,8 +33,8 @@ public:
             newNode->prev = tail;
         }
         tail = newNode;
-        cout<<"Node "<<data<<" added";
-        cout<<"\n";
+        cout << "Node " << data << " added";
+        cout << "\n";
     }
 
     void display()
@@ -50,12 +50,12 @@ public:
             cout << temp->data << ", ";
             temp = temp->next;
         }
-        cout<<"\n";
+        cout << "\n";
     }
 
     void displayReverse()
     {
-        
+
         Node *temp = tail;
         if (tail == nullptr)
         {
@@ -67,7 +67,42 @@ public:
             cout << temp->data << ", ";
             temp = temp->prev;
         }
-        cout<<"\n";
+        cout << "\n";
+    }
+
+    void deleteNode(int data)
+    {
+        Node *temp = head,*prev;
+        if (head == nullptr)
+        {
+            cout << "List is empty\n";
+            return;
+        }
+        else if (temp != nullptr && temp->data == data)
+        {
+            head = temp->next;
+            cout << data << " deleted\n";
+            return;
+        }
+
+        while (temp != nullptr && temp->data != data)
+        {
+            prev = temp;
+            temp = temp->next;
+
+        }
+        prev->next = temp->next;
+
+        if (temp == tail)
+        {
+            tail = prev;
+            tail->next = nullptr;
+            cout << data << " deleted\n";
+            return;
+        }
+        
+        cout << data << " deleted\n";
+        // cout << temp->prev->data << "----" << temp->data << "----" << temp->next->data;
     }
 };
 
@@ -83,5 +118,7 @@ int main()
     list.addNode(5);
     list.display();
     list.displayReverse();
+    list.deleteNode(3);
+    list.display();
     return 0;
 }
