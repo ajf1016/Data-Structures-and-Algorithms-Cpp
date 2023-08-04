@@ -34,6 +34,7 @@ public:
         }
         tail = newNode;
         cout<<"Node "<<data<<" added";
+        cout<<"\n";
     }
 
     void display()
@@ -49,6 +50,24 @@ public:
             cout << temp->data << ", ";
             temp = temp->next;
         }
+        cout<<"\n";
+    }
+
+    void displayReverse()
+    {
+        
+        Node *temp = tail;
+        if (tail == nullptr)
+        {
+            cout << "List is empty\n";
+            return;
+        }
+        while (temp != nullptr)
+        {
+            cout << temp->data << ", ";
+            temp = temp->prev;
+        }
+        cout<<"\n";
     }
 };
 
@@ -63,5 +82,6 @@ int main()
     list.addNode(4);
     list.addNode(5);
     list.display();
+    list.displayReverse();
     return 0;
 }
