@@ -33,6 +33,7 @@ public:
             newNode->prev = tail;
         }
         tail = newNode;
+        cout<<"Node "<<data<<" added";
     }
 
     void display()
