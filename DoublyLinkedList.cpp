@@ -119,13 +119,20 @@ public:
             temp = temp->next;
         }
 
-        
-
         if(tail->data == nextTo){
             tail->next = newNode;
             newNode->prev = tail;
             tail = newNode; 
+            return;
+        }else{
+
+
+        newNode->prev = temp;
+        newNode->next = temp->next;
+        temp->next->prev = newNode;
+        temp->next = newNode;
         }
+
     }
 };
 
@@ -140,7 +147,8 @@ int main()
     list.addNode(4);
     list.addNode(5);
     list.display();
-    list.insertAfter(5,1);
+    list.insertAfter(4,40);
     list.display();
+    list.displayReverse();
     return 0;
 }
