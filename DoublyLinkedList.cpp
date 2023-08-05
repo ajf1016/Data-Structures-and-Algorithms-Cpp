@@ -119,6 +119,8 @@ public:
             temp = temp->next;
         }
 
+        
+
         if(tail->data == nextTo){
             tail->next = newNode;
             newNode->prev = tail;
