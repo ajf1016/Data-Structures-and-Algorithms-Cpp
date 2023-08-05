@@ -149,6 +149,6 @@ int main()
     list.display();
     list.insertAfter(4,40);
     list.display();
-    list.displayReverse();
+    // list.displayReverse();
     return 0;
 }
