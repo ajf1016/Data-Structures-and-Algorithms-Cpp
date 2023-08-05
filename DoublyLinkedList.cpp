@@ -102,7 +102,28 @@ public:
         }
         
         cout << data << " deleted\n";
-        // cout << temp->prev->data << "----" << temp->data << "----" << temp->next->data;
+    }
+
+    void insertAfter(int nextTo,int data){
+        Node *newNode = new Node(data);
+        Node *temp = head;
+
+        if(head == nullptr){
+            cout<<"List is empty..!"<<data<<" added to first position\n";
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+
+        while(temp != nullptr && temp->data != nextTo){
+            temp = temp->next;
+        }
+
+        if(tail->data == nextTo){
+            tail->next = newNode;
+            newNode->prev = tail;
+            tail = newNode; 
+        }
     }
 };
 
@@ -117,8 +138,7 @@ int main()
     list.addNode(4);
     list.addNode(5);
     list.display();
-    list.displayReverse();
-    list.deleteNode(3);
+    list.insertAfter(5,1);
     list.display();
     return 0;
 }
