@@ -172,7 +172,7 @@ int main()
     list.addNode(4);
     list.addNode(5);
     list.display();
-    // list.insertAfter(4, 40);
+    list.insertAfter(4, 40);
     list.insertBtw(4,5,34);
     list.display();
     list.displayReverse();
