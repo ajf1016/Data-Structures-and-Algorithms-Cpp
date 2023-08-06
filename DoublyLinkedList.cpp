@@ -72,7 +72,7 @@ public:
 
     void deleteNode(int data)
     {
-        Node *temp = head,*prev;
+        Node *temp = head, *prev;
         if (head == nullptr)
         {
             cout << "List is empty\n";
@@ -89,7 +89,6 @@ public:
         {
             prev = temp;
             temp = temp->next;
-
         }
         prev->next = temp->next;
 
@@ -100,39 +99,65 @@ public:
             cout << data << " deleted\n";
             return;
         }
-        
+
         cout << data << " deleted\n";
     }
 
-    void insertAfter(int nextTo,int data){
+    void insertAfter(int nextTo, int data)
+    {
         Node *newNode = new Node(data);
         Node *temp = head;
 
-        if(head == nullptr){
-            cout<<"List is empty..!"<<data<<" added to first position\n";
+        if (head == nullptr)
+        {
+            cout << "List is empty..!" << data << " added to first position\n";
             head = newNode;
             tail = newNode;
             return;
         }
 
-        while(temp != nullptr && temp->data != nextTo){
+        while (temp != nullptr && temp->data != nextTo)
+        {
             temp = temp->next;
         }
 
-        if(tail->data == nextTo){
+        if (tail->data == nextTo)
+        {
             tail->next = newNode;
             newNode->prev = tail;
-            tail = newNode; 
+            tail = newNode;
             return;
-        }else{
+        }
+        else
+        {
 
+            newNode->prev = temp;
+            newNode->next = temp->next;
+            temp->next->prev = newNode;
+            temp->next = newNode;
+        }
+    }
+
+    void insertBtw(int nextTo,int beforeTo,int data){
+        Node *newNode = new Node(data);
+        Node *temp = head;
+
+        if (head == nullptr)
+        {
+            cout << "List is empty..!" << data << " added to first position\n";
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+
+        while(temp != nullptr && temp->data != nextTo && temp->next->data != beforeTo){
+            temp = temp->next;
+        }
 
         newNode->prev = temp;
         newNode->next = temp->next;
         temp->next->prev = newNode;
         temp->next = newNode;
-        }
-
     }
 };
 
@@ -147,8 +172,9 @@ int main()
     list.addNode(4);
     list.addNode(5);
     list.display();
-    list.insertAfter(4,40);
+    // list.insertAfter(4, 40);
+    list.insertBtw(4,5,34);
     list.display();
-    // list.displayReverse();
+    list.displayReverse();
     return 0;
 }
