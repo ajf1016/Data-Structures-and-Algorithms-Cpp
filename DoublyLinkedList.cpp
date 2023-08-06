@@ -138,7 +138,8 @@ public:
         }
     }
 
-    void insertBtw(int nextTo,int beforeTo,int data){
+    void insertBtw(int nextTo, int beforeTo, int data)
+    {
         Node *newNode = new Node(data);
         Node *temp = head;
 
@@ -150,7 +151,8 @@ public:
             return;
         }
 
-        while(temp != nullptr && temp->data != nextTo && temp->next->data != beforeTo){
+        while (temp != nullptr && temp->data != nextTo && temp->next->data != beforeTo)
+        {
             temp = temp->next;
         }
 
@@ -159,22 +161,49 @@ public:
         temp->next->prev = newNode;
         temp->next = newNode;
     }
+
+    void deleteRepeatedNodes()
+    {
+        Node *current = head;
+        while(current != nullptr){
+            Node *next = current->next;
+            while(next != nullptr && next->data == current->data){
+                next = next->next;
+            }
+            current->next = next;
+            if(next == tail){
+                tail = current;
+            }
+            current = next;
+        }
+        
+    }
 };
 
 int main()
 {
     cout << "Hello Doubly..\n";
     DoublyLinkedList list;
-    list.display();
+    // list.display();
+    // list.addNode(1);
+    // list.addNode(2);
+    // list.addNode(3);
+    // list.addNode(4);
+    // list.addNode(5);
+    // list.display();
+    // list.insertAfter(4, 40);
+    // list.insertBtw(4,5,34);
+    // list.display();
+    // list.displayReverse();
     list.addNode(1);
-    list.addNode(2);
+    list.addNode(1);
+    list.addNode(3);
+    list.addNode(3);
     list.addNode(3);
     list.addNode(4);
-    list.addNode(5);
+    list.addNode(4);
     list.display();
-    list.insertAfter(4, 40);
-    list.insertBtw(4,5,34);
+    list.deleteRepeatedNodes();
     list.display();
-    list.displayReverse();
     return 0;
 }
