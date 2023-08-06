@@ -110,18 +110,41 @@ public:
         newNode->next = temp->next;
         temp->next = newNode;
     }
+
+    void removeDuplicateNode()
+    {
+        Node *current = head;
+        while (current != nullptr)
+        {
+            Node *next = current->next;
+            while (next != nullptr && next->data == current->data)
+            {
+                next = next->next;
+            }
+
+            current->next = next;
+            if (next == tail)
+            {
+                tail = current;
+            }
+            current = next;
+        }
+    }
 };
 
 int main()
 {
     cout << "Hello world";
     SLinkedList list;
-    list.display();
     list.addNode(1);
-    list.addNode(2);
+    list.addNode(1);
+    list.addNode(3);
+    list.addNode(3);
     list.addNode(3);
     list.addNode(4);
-    list.insertNode(4, 10);
+    list.addNode(4);
+    list.display();
+    list.removeDuplicateNode();
     list.display();
     return 0;
 }
