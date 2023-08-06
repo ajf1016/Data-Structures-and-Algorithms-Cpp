@@ -171,8 +171,10 @@ public:
                 next = next->next;
             }
             current->next = next;
-            if(next == tail){
+             if (next == tail && current->data == next->data)
+            {
                 tail = current;
+                tail->next = nullptr;
             }
             current = next;
         }
