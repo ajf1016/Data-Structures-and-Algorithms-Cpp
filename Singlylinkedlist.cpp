@@ -131,6 +131,20 @@ public:
             current = next;
         }
     }
+
+    void displayReverse(Node* current) {
+        if (current == nullptr) {
+            return;
+        }
+
+        displayReverse(current->next);
+        cout << current->data << "\n";
+    }
+
+    void displayReverse() {
+        cout << "Linked list in reverse order:\n";
+        displayReverse(head);
+    }
 };
 
 int main()
@@ -138,14 +152,13 @@ int main()
     cout << "Hello world";
     SLinkedList list;
     list.addNode(1);
-    list.addNode(1);
-    list.addNode(3);
-    list.addNode(3);
+    list.addNode(2);
     list.addNode(3);
     list.addNode(4);
-    list.addNode(4);
+    list.addNode(5);
+    list.addNode(6);
+    list.addNode(7);
     list.display();
-    list.removeDuplicateNode();
-    list.display();
+     list.displayReverse();
     return 0;
 }
