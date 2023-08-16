@@ -50,7 +50,14 @@ public:
         cout << data << " Node added\n";
     }
 
-    
+    void pop(){
+        if(top == nullptr){
+            cout<<"Stack underflow..!\n";
+            return;
+        }
+
+        top = top->next;
+    }
 };
 
 int main()
