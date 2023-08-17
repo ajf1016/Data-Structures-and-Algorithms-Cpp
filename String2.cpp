@@ -28,7 +28,7 @@ void stringCount(string text)
 int main()
 {
     cout << "Hello world!" << endl;
-    stringCount("AAABB");
+    stringCount("AAABBBCCCDDDAAA");
     return 0;
 }
 
