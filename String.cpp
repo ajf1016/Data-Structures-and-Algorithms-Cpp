@@ -25,6 +25,6 @@ void printText(string text, int key)
 int main()
 {
     cout << "Hello world\n";
-    printText("Ajmal",2);
+    printText("Hai",2);
     return 0;
 }
