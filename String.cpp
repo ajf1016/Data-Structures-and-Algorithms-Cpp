@@ -6,6 +6,7 @@ void printText(string text, int key)
 {
     int newKey = key % 26;
     char newText[text.length()];
+    cout<<newKey;
     for (int i = 0; i < text.length(); i++)
     {
         int textPosition = text[i] + newKey;
@@ -25,6 +26,6 @@ void printText(string text, int key)
 int main()
 {
     cout << "Hello world\n";
-    printText("Hai",2);
+    printText("hai",10);
     return 0;
 }
