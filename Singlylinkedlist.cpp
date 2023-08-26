@@ -154,11 +154,15 @@ int main()
     list.addNode(1);
     list.addNode(2);
     list.addNode(3);
+    list.addNode(3);
+    list.addNode(3);
     list.addNode(4);
-    list.addNode(5);
+    list.addNode(3);
+    list.addNode(3);
     list.addNode(6);
     list.addNode(7);
     list.display();
-     list.displayReverse();
+    list.removeDuplicateNode();
+    list.display();
     return 0;
 }
