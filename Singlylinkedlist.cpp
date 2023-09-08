@@ -132,6 +132,32 @@ public:
         }
     }
 
+    void deleteAllNodes(int data){
+        Node *temp = head, *prev = nullptr;
+        
+        if(temp == nullptr){
+            cout<<"List is Empty..\n";
+            return;
+        }
+
+        while(temp != nullptr){
+            if(temp->data == data){
+                if(temp == head){
+                    head  = temp->next;
+                    delete temp;
+                    temp = head;
+                }else{
+                    prev->next = temp->next;
+                    delete temp;
+                    temp = prev->next;
+                }
+            }else{
+                prev = temp;
+                temp = temp->next;
+            }
+        }
+    }
+
     void displayReverse(Node* current) {
         if (current == nullptr) {
             return;
@@ -162,7 +188,8 @@ int main()
     list.addNode(6);
     list.addNode(7);
     list.display();
-    list.deleteNode(3);
+    // list.deleteNode(3);
+    list.deleteAllNodes(3);
     list.display();
     return 0;
 }
