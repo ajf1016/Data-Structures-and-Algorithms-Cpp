@@ -111,24 +111,23 @@ public:
         temp->next = newNode;
     }
 
-    void removeDuplicateNode()
-    {
-        Node *current = head;
-        while (current != nullptr)
-        {
-            Node *next = current->next;
-            while (next != nullptr && next->data == current->data)
-            {
-                next = next->next;
+    void duplicateAll(){
+        Node *temp = head;
+        if(temp == nullptr){
+            cout<<"List is Empty..\n";
+            return;
+        }
+        
+        while(temp != nullptr){
+            Node *current = temp;
+            while(current->next != nullptr){
+                if(current->next->data == temp->data){
+                    current->next = current->next->next;
+                }else{
+                    current = current->next;
+                }
             }
-
-            current->next = next;
-            if (next == tail && current->data == next->data)
-            {
-                tail = current;
-                tail->next = nullptr;
-            }
-            current = next;
+            temp = temp->next;
         }
     }
 
