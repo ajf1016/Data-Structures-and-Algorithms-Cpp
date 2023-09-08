@@ -162,7 +162,7 @@ int main()
     list.addNode(6);
     list.addNode(7);
     list.display();
-    list.removeDuplicateNode();
+    list.deleteNode(3);
     list.display();
     return 0;
 }
