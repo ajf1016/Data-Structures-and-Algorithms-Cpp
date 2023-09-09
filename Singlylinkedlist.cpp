@@ -157,6 +157,31 @@ public:
         }
     }
 
+    void sort(){
+         if (head == nullptr) {
+             cout<<"List is empty..\n";
+            return;
+        }
+        
+        bool swapped;
+        Node *temp;
+        
+        do{
+            swapped = false;
+            temp = head;
+            
+            while(temp->next != nullptr){
+                if(temp -> data > temp->next->data){
+                    int tempData = temp->data;
+                    temp->data = temp->next->data;
+                    temp->next->data = tempData;
+                    swapped = true;
+                }
+                temp = temp->next;
+            }
+        }while(swapped);
+    }
+
     void displayReverse(Node* current) {
         if (current == nullptr) {
             return;
