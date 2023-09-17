@@ -49,6 +49,33 @@ void insertEnd(int data){
     temp->next = nn;
 }
 
+void deleteNode(int data){
+   if(start == nullptr){
+        cout<<"List is empty..\n";
+        return;
+   }
+   if(start->data == data){
+        start = start->next;
+        return;
+   }
+   temp = start;
+   node *previous = temp;
+   while(temp != nullptr && temp->data != data){
+        previous = temp;
+        temp = temp->next;
+   }
+
+   if(temp == tail){
+        tail = previous;
+        tail->next = nullptr;
+        delete temp;
+        return;
+   }
+   previous->next = temp->next;
+   delete temp;
+   temp = previous;
+}
+
 
 
 int main()
