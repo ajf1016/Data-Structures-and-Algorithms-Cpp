@@ -76,6 +76,18 @@ void deleteNode(int data){
    temp = previous;
 }
 
+void reverse(node *current){
+    if(current == nullptr){
+        return;
+    }
+    reverse(current->next);
+    cout<<current->data<<",";
+}
+void displayReverse(){
+    cout<<"Singly Linked list in reverse order..\n";
+    reverse(start);
+}
+
 
 
 int main()
