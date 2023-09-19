@@ -4,11 +4,11 @@ using namespace std;
 struct node{
 	int data;
 	node *next;
-	node *prev;
+	node *previous;
 	node(int data){
 		this->data = data;
 		next = nullptr;
-		prev = nullptr;
+		previous = nullptr;
 	}
 }*head = nullptr,*tail = nullptr,*temp = nullptr;
 
@@ -19,12 +19,34 @@ void insertNode(int data){
 		head = newNode;
 	}else{
 		tail->next = newNode;
-		newNode->prev = tail;
+		newNode->previous = tail;
 		newNode->next = nullptr;
 	}
 	tail = newNode;
 }
 
+void deleteNode(int data){
+	if(head->data == data){
+		head = head->next;
+		return;
+	}
+
+	temp = head;
+	while(temp != nullptr && temp->data != data){
+		// temp->previous->next = temp;
+		temp = temp->next;
+	}
+
+	if(temp == tail){
+		tail = temp->previous;
+		tail->next = nullptr;
+		return;
+
+	}
+
+	temp->previous->next = temp->next;
+	delete temp;
+}
 
 void displayList(){
 	if(head == nullptr){
@@ -46,6 +68,8 @@ int main(){
 	insertNode(2);
 	insertNode(3);
 	insertNode(4);
+	displayList();
+	deleteNode(4);
 	displayList();
 
 
