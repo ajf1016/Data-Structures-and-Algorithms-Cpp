@@ -48,6 +48,31 @@ void deleteNode(int data){
 	delete temp;
 }
 
+void deleteAllNode(int data){
+	if(head == nullptr){
+		cout<<"List is already empty..\n";
+		return;
+	}
+
+	temp = head;
+	while(temp != nullptr){
+		if(temp->data == data){
+			if(temp->previous != nullptr){
+				temp->previous->next = temp->next;
+			}else{
+				head = temp->next;
+			}
+
+			if(temp->next != nullptr){
+				temp->next->previous = temp->previous;
+			}else{
+				tail = temp->previous;
+			}
+		}
+		temp = temp->next;
+	}
+}
+
 void displayList(){
 	if(head == nullptr){
 		cout<<"List is empty..\n";
@@ -66,10 +91,20 @@ int main(){
 	displayList();
 	insertNode(1);
 	insertNode(2);
+	insertNode(2);
+	insertNode(2);
+	insertNode(2);
+	insertNode(3);
+	insertNode(3);
+	insertNode(3);
+	insertNode(3);
+	insertNode(4);
+	insertNode(3);
 	insertNode(3);
 	insertNode(4);
 	displayList();
-	deleteNode(4);
+	// deleteNode(4);
+	deleteAllNode(2);
 	displayList();
 
 
