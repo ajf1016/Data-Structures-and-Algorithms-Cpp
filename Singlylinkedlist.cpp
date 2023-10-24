@@ -85,6 +85,18 @@ public:
         cout << data << " deleted\n";
     }
 
+     void insertAtFirst(int data){
+         Node *newNode = new Node(data);
+        if(head == nullptr){
+            head = newNode;
+            tail= newNode;
+            return;
+
+        }
+        newNode->next = head;
+        head = newNode;
+    }
+
     void insertNode(int nextTo, int data)
     {
         Node *newNode = new Node(data);
