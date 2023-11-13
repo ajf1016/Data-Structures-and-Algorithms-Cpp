@@ -224,8 +224,6 @@ int main()
     list.addNode(6);
     list.addNode(7);
     list.display();
-    // list.deleteNode(3);
-    list.deleteAllNodes(3);
-    list.display();
+    list.displayReverse();
     return 0;
 }
