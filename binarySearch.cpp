@@ -1,36 +1,36 @@
 #include <iostream>
+using namespace std;
 
-int binarySearch(int arr[], int n, int target) {
+
+int binarySearch(int arr[],int n,int t){
     int left = 0;
     int right = n - 1;
 
-    while (left <= right) {
+    while(left <= right){
         int mid = left + (right - left) / 2;
 
-        if (arr[mid] == target) {
-            return mid; // Element found, return its index
-        } else if (arr[mid] < target) {
-            left = mid + 1; // Search the right half
-        } else {
-            right = mid - 1; // Search the left half
+        if(arr[mid] == t){
+            return mid;
+        }else if(arr[mid] < t){
+            left = mid + 1;
+        }else{
+            right = mid - 1;
         }
     }
-
-    return -1; // Element not found in the array
+    return -1;
 }
-
-int main() {
-    int arr[] = {11, 12, 22, 25, 64};
+int main(){
+    cout<<"Hello world..\n";
+    int arr[10] = {1,2,3,4,5,6,7,8,9,10};
     int n = sizeof(arr) / sizeof(arr[0]);
-    int target = 22;
 
-    int result = binarySearch(arr, n, target);
+    int t = 4;
 
-    if (result != -1) {
-        std::cout << "Element " << target << " found at index " << result << std::endl;
-    } else {
-        std::cout << "Element " << target << " not found in the array" << std::endl;
+    int res = binarySearch(arr,n,t);
+
+    if(res != -1){
+        cout<<"Element "<<t<<" found at "<<res<<" position.\n";
+    }else{
+        cout<<"Element not found.\n";
     }
-
-    return 0;
 }
