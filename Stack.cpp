@@ -1,77 +1,67 @@
 #include <iostream>
 using namespace std;
 
-class Stack
-{
-    class Node
-    {
+class Stack{
+    class Node{
     public:
         int data;
         Node *next;
-
-        Node(int data)
-        {
+        Node(int data){
             this->data = data;
+            next = nullptr;
         }
     };
-
 public:
-    Node *top = nullptr;
-
-    void display()
-    {
-        Node *current = top;
-        if (top == nullptr)
-        {
-            cout << "Stack is Empty...!\n";
-            return;
-        }
-
-        while (current != nullptr)
-        {
-            cout << current->data << endl;
-            current = current->next;
-        }
+    Node *top;
+    Stack(){
+        top = nullptr;
     }
 
-    void push(int data)
-    {
-        Node *newNode = new Node(data);
+    bool isEmpty(){
+        return top == nullptr;
+    }
 
-        if (top == nullptr)
-        {
-            top = newNode;
-        }
-        else
-        {
-            newNode->next = top;
-            top = newNode;
-        }
-        cout << data << " Node added\n";
+    void push(int val){
+
+        Node *nn = new Node(val);
+
+        nn->next = top;
+        top = nn;
     }
 
     void pop(){
-        if(top == nullptr){
-            cout<<"Stack underflow..!\n";
+        if(isEmpty()){
+            cout<<"Stack underflow..\n";
             return;
         }
 
+        Node *t = top;
         top = top->next;
+        free(t);
+    }
+
+    void display(){
+        Node *t = top;
+        if(isEmpty()){
+            return;
+        }
+        while(t != nullptr){
+            cout<<t->data<<", ";
+            t = t->next;
+        }
+        cout<<"\n";
     }
 };
 
-int main()
-{
-    cout << "Hello World..!\n";
-    Stack st;
-    st.display();
-    st.push(1);
-    st.push(2);
-    st.push(3);
-    st.push(4);
-    st.push(5);
-    st.push(6);
-    st.push(7);
-    st.display();
+
+
+int main(){
+    cout<<"Hello world..\n";
+    Stack s1;
+    s1.push(1);
+    s1.push(2);s1.push(3);s1.push(4);
+    s1.display();
+    s1.pop();
+    s1.display();
     return 0;
 }
