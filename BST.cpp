@@ -1,101 +1,114 @@
 #include <iostream>
 using namespace std;
 
-struct Node {
-    int key;
-    Node* left;
-    Node* right;
+class BST{
+    class Node{
+    public:
+        int data;
+        Node *left,*right;
 
-    Node(int data) : key(data), left(nullptr), right(nullptr) {}
+        Node(int data){
+            this->data = data;
+            left = nullptr;
+            right = nullptr;
+        }
+    };
+    public:
+        Node *root;
+        BST(){
+            root = nullptr;
+        }
+
+        void insert(int data){
+            Node *currentNode = root;
+            if(currentNode == nullptr){
+                root = new Node(data);
+                return;
+            }
+
+            while(true){
+                if(data < currentNode->data){
+                    if(currentNode->left == nullptr){
+                        currentNode->left = new Node(data);
+                        break;
+                    }else{
+                        currentNode = currentNode->left;
+                    }
+                }else{
+                    if(currentNode->right == nullptr){
+                        currentNode->right = new Node(data);
+                        break;
+                    }else{
+                        currentNode = currentNode->right;
+                    }
+                }
+            }
+        };
+
+        bool contain(int data){
+            Node *currentNode = root;
+
+            while(currentNode != nullptr){
+                if(data < currentNode->data){
+                    currentNode = currentNode->left;
+                }else if(data > currentNode->data){
+                    currentNode = currentNode->right;
+                }else{
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void inOrder(){
+            cout<<"IN ORDER : ";
+            inOrderHelper(root);
+            cout<<"\n";
+        };
+        void preOrder(){
+            cout<<"PRE ORDER : ";
+            preOrderHelper(root);
+            cout<<"\n";
+        };
+        void postOrder(){
+            cout<<"POST ORDER : ";
+            postOrderHelper(root);
+            cout<<"\n";
+        };
+
+        void inOrderHelper(Node *current){
+            if(current != nullptr){
+                inOrderHelper(current->left);
+                cout<<current->data<<", ";
+                inOrderHelper(current->right);
+            }
+        };
+        void preOrderHelper(Node *current){
+            cout<<current->data<<", ";
+            inOrderHelper(current->left);
+            inOrderHelper(current->right);
+        };
+        void postOrderHelper(Node *current){
+            inOrderHelper(current->left);
+            inOrderHelper(current->right);
+            cout<<current->data<<", ";
+        };
 };
 
-class BinarySearchTree {
-private:
-    Node* root;
 
-    Node* insertRec(Node* root, int key) {
-        if (root == nullptr) {
-            return new Node(key);
-        }
-
-        if (key < root->key) {
-            root->left = insertRec(root->left, key);
-        } else if (key > root->key) {
-            root->right = insertRec(root->right, key);
-        }
-
-        return root;
-    }
-
-    void inorderRec(Node* root) {
-        if (root == nullptr) {
-            return;
-        }
-        inorderRec(root->left);
-        cout << root->key << " ";
-        inorderRec(root->right);
-    }
-
-    void preorderRec(Node* root) {
-        if (root == nullptr) {
-            return;
-        }
-        cout << root->key << " ";
-        preorderRec(root->left);
-        preorderRec(root->right);
-    }
-
-    void postorderRec(Node* root) {
-        if (root == nullptr) {
-            return;
-        }
-        postorderRec(root->left);
-        postorderRec(root->right);
-        cout << root->key << " ";
-    }
-
-public:
-    BinarySearchTree() : root(nullptr) {}
-
-    void insert(int key) {
-        root = insertRec(root, key);
-    }
-
-    void inorderTraversal() {
-        inorderRec(root);
-        cout << endl;
-    }
-
-    void preorderTraversal() {
-        preorderRec(root);
-        cout << endl;
-    }
-
-    void postorderTraversal() {
-        postorderRec(root);
-        cout << endl;
-    }
-};
-
-int main() {
-    BinarySearchTree bst;
-    
-    bst.insert(50);
-    bst.insert(30);
-    bst.insert(20);
-    bst.insert(40);
-    bst.insert(70);
-    bst.insert(60);
-    bst.insert(80);
-
-    cout << "Inorder Traversal: ";
-    bst.inorderTraversal();
-
-    cout << "Preorder Traversal: ";
-    bst.preorderTraversal();
-
-    cout << "Postorder Traversal: ";
-    bst.postorderTraversal();
-
+int main(){
+    cout<<"Hello world..\n";
+    BST t;
+    t.insert(40);
+    t.insert(30);
+    t.insert(50);
+    t.insert(25);
+    t.insert(35);
+    t.insert(45);
+    t.insert(60);
+    // cout<<t.contain(600)<<"HEllo";
+    t.inOrder();
+    t.preOrder();
+    t.postOrder();
     return 0;
 }
