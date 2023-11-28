@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 struct Node {
     int key;
@@ -31,7 +32,7 @@ private:
             return;
         }
         inorderRec(root->left);
-        std::cout << root->key << " ";
+        cout << root->key << " ";
         inorderRec(root->right);
     }
 
@@ -39,7 +40,7 @@ private:
         if (root == nullptr) {
             return;
         }
-        std::cout << root->key << " ";
+        cout << root->key << " ";
         preorderRec(root->left);
         preorderRec(root->right);
     }
@@ -50,7 +51,7 @@ private:
         }
         postorderRec(root->left);
         postorderRec(root->right);
-        std::cout << root->key << " ";
+        cout << root->key << " ";
     }
 
 public:
@@ -62,17 +63,17 @@ public:
 
     void inorderTraversal() {
         inorderRec(root);
-        std::cout << std::endl;
+        cout << endl;
     }
 
     void preorderTraversal() {
         preorderRec(root);
-        std::cout << std::endl;
+        cout << endl;
     }
 
     void postorderTraversal() {
         postorderRec(root);
-        std::cout << std::endl;
+        cout << endl;
     }
 };
 
@@ -87,13 +88,13 @@ int main() {
     bst.insert(60);
     bst.insert(80);
 
-    std::cout << "Inorder Traversal: ";
+    cout << "Inorder Traversal: ";
     bst.inorderTraversal();
 
-    std::cout << "Preorder Traversal: ";
+    cout << "Preorder Traversal: ";
     bst.preorderTraversal();
 
-    std::cout << "Postorder Traversal: ";
+    cout << "Postorder Traversal: ";
     bst.postorderTraversal();
 
     return 0;
